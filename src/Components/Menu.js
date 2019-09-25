@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from 'styled-components';
 import {foods} from '../FoodData/foodData.js';
-import {Food, FoodGrid} from '../Styles/StylesFoodGrid';
+import {Food, FoodGrid,FoodLabel} from '../Styles/StylesFoodGrid';
 
 
 const MenuStyles = styles.div `
@@ -23,7 +23,9 @@ const Menu = () => (
    {foods.map((food,i) =>(
    
    <Food key={i} img ={food.img}>
+     <FoodLabel>
      {food.name}
+     </FoodLabel>
    </Food>
 ))}
 </FoodGrid>

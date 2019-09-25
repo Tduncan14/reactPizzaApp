@@ -9,8 +9,9 @@ export const FoodGrid = styles.div `
 
 export const FoodLabel = styles.div`
 position:absolute;
-background-color:white;
+background-color:rgba(255,255,255,0.8);
 padding:5px;
+border-radius:4px;s
 `;
 
 export const Food = styles(Title)`
@@ -23,4 +24,8 @@ padding:10px;
 font-size:20px;
 border-radius:11px;
 box-shadow:0px 0px 2px 0px grey;
+&:hover{
+    cursor:pointer;
+    opacity:0.7;
+}
 `
