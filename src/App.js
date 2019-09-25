@@ -26,9 +26,7 @@ function App() {
 <Banner />
 <Menu/>
 <div>
- <h1> hello pizza </h1>
-
- <p> Keep moving forward Treek</p>
+ 
 </div>
 </>
   );

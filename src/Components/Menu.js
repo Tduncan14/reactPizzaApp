@@ -18,17 +18,25 @@ const Menu = () => (
 
   <>
   <MenuStyles>
-    <h1>Menu</h1>
-    <FoodGrid>
-   {foods.map((food,i) =>(
-   
-   <Food key={i} img ={food.img}>
-     <FoodLabel>
-     {food.name}
-     </FoodLabel>
-   </Food>
-))}
-</FoodGrid>
+    {Object.entries(foods).map(([
+      section,foods
+    ]) =>(
+      <>
+      <h1>{section}</h1>
+      <FoodGrid>
+        {foods.map (food => (
+          <Food img={food.img}>
+            <FoodLabel>{food.name}</FoodLabel>
+          </Food>
+        ))}
+  
+  
+  </FoodGrid>
+  </>
+
+    ))
+
+    }
   </MenuStyles>
   </>
 )
