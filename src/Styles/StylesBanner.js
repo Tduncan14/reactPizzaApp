@@ -7,4 +7,5 @@ export const StylesBanner = styles.div `
  background-image:url(${BannerImage});
  background-position:center;
  background-size:cover;
+ filter:contrast(75%);
 `
