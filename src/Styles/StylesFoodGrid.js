@@ -23,9 +23,16 @@ filter:contrast(75%);
 padding:10px;
 font-size:20px;
 border-radius:11px;
+margin-top:5px;
+transition-property:box-shadow margin-top filter;
+transition-duration:.1s;
 box-shadow:0px 0px 2px 0px grey;
 &:hover{
     cursor:pointer;
-    opacity:0.7;
+    filter:contrast(100%);
+    box-shadow:0px 5px 10px 0px grey;
+    margin-top:0px;
+    margin-bottom:5px;
+    
 }
 `
