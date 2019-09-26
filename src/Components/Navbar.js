@@ -16,7 +16,7 @@ text-shadow: 1px 1px 4px #380502;
     <>
     <StyleNavbar>
        <Logo>
-          Pizza 🍕🍟🥤
+          Pizza<span role="img" aria-label="pizza emoji"> 🍕🍟🥤 </span>
        </Logo>
      </StyleNavbar>
     </>
