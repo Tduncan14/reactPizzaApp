@@ -15,11 +15,11 @@ console.log(openFood);
 <>
 <GlobalStyle />
 <Navbar />
-<FoodDialog openFood = {openFood}  img = {img}/>
+<FoodDialog openFood = {openFood}  setOpenFood={setOpenFood}/>
 <Banner/>
-<Menu setOpenFood={setOpenFood} setimg ={setimg}/>
+<Menu setOpenFood={setOpenFood}/>
 <div>
- 
+
 </div>
 </>
   );

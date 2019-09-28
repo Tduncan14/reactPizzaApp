@@ -1,20 +1,20 @@
-import styles from 'styled-components';
+import styled from 'styled-components';
 import {Title} from './title';
 
-export const FoodGrid = styles.div `
+export const FoodGrid = styled.div `
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:20px;
 `
 
-export const FoodLabel = styles.div`
+export const FoodLabel = styled(Title)`
 position:absolute;
 background-color:rgba(255,255,255,0.8);
 padding:5px;
 border-radius:4px;s
 `;
 
-export const Food = styles(Title)`
+export const Food = styled.div`
 height:100px;
 background-image:${({img}) => `url(${img});`}
 background-size:cover;
