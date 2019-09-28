@@ -40,6 +40,7 @@ export const foods = foodItems.reduce((res, food) => {
       res[food.section] = [];
     }
     res[food.section].push(food);
+    console.log(res,'res')
     return res;
   }, {});
   

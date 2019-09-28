@@ -13,31 +13,34 @@ height:400px;
 
 
 
-const Menu = () => (
+const Menu = ({setOpenFood}) => (
 
 
   <>
-  <MenuStyles>
-    {Object.entries(foods).map(([
-      section,foods
-    ]) =>(
-      <>
-      <h1>{section}</h1>
-      <FoodGrid>
-        {foods.map (food => (
-          <Food img={food.img}>
-            <FoodLabel>{food.name}</FoodLabel>
-          </Food>
-        ))}
-  
-  
-  </FoodGrid>
-  </>
+ <MenuStyles>
+      {Object.entries(foods).map(([section, foods]) => (
+        <>
+          <h1> {section} </h1>
+          <FoodGrid>
+            {foods.map(food => (
+              <Food
+                img={food.img}
+                onClick={() => {
+                  setOpenFood(food);
+                }}
+              >
+                <FoodLabel>
+                {food.name}
 
-    ))
-
-    }
+                </FoodLabel>
+              </Food>
+            ))}
+          </FoodGrid>
+        </>
+      ))}
   </MenuStyles>
+  );
+
   </>
 )
 
