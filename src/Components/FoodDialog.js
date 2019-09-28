@@ -21,7 +21,10 @@ top:75px;
 height:500px;
 z-index:5;
 max-height:calc(100% - 100px);
-left: calc(50% - 250px)`;
+left: calc(50% - 250px);
+display:flex;
+flex-direction:column`;
+
 
 
 
@@ -39,7 +42,14 @@ top:100px;
 font-size:30px;
 padding:5px 40px;
 `
+const DialogContent = styled.div `
+overflow:auto;
+min-height:100px;`
 
+
+const DialogFooter = styled.div `
+box-shadow:  0px  7px 4px -2px gray;
+height:60px;`;
 
 export function FoodDialog({openFood,setOpenFood}){
 
@@ -58,6 +68,12 @@ function close () {
            <DialogBanner img={openFood.img}>
            < DialogBannerName>{openFood.name}</DialogBannerName>
            </DialogBanner>
+
+           <DialogContent>
+
+           </DialogContent>
+
+           <DialogFooter/>
        
        </Dialog>
    </>

@@ -5,6 +5,7 @@ import Banner from './Components/Banner';
 import Menu from './Components/Menu'
 import {GlobalStyle} from './Styles/StyleGlobal';
 import {FoodDialog} from './Components/FoodDialog';
+import Order from './Components/Order';
 function App() {
 
    const [openFood,setOpenFood] = useState();
@@ -17,6 +18,7 @@ console.log(openFood);
 <Navbar />
 <FoodDialog openFood = {openFood}  setOpenFood={setOpenFood}/>
 <Banner/>
+<Order/>
 <Menu setOpenFood={setOpenFood}/>
 <div>
 
