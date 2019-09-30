@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import {FoodLabel} from '../Styles/StylesFoodGrid'
-
+import {pizzaRed} from '../Styles/colors';
+import {Title} from '../Styles/title';
 const DialogShadow = styled.div`
 
 position:fixed;
@@ -42,14 +43,29 @@ top:100px;
 font-size:30px;
 padding:5px 40px;
 `
-const DialogContent = styled.div `
+export const DialogContent = styled.div `
 overflow:auto;
 min-height:100px;`
 
 
-const DialogFooter = styled.div `
+export const DialogFooter = styled.div `
 box-shadow:  0px  7px 4px -2px gray;
-height:60px;`;
+height:60px;
+display:flex;
+justify-content:center;`;
+
+
+ export const ConfirmButton = styled(Title)`
+ margin:10px;
+ color:white;
+ height:20px;
+ border-radius:5px;
+ padding:10px;
+ text-align:center;
+ width:200px;
+ cursor:pointer;
+ background-color:${pizzaRed};
+`;
 
 export function FoodDialog({openFood,setOpenFood}){
 
@@ -73,7 +89,9 @@ function close () {
 
            </DialogContent>
 
-           <DialogFooter/>
+           <DialogFooter>
+             <ConfirmButton> Add to Order</ConfirmButton>
+           </DialogFooter>
        
        </Dialog>
    </>
