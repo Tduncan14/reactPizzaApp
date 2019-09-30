@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {FoodLabel} from '../Styles/StylesFoodGrid'
 import {pizzaRed} from '../Styles/colors';
 import {Title} from '../Styles/title';
+import {useOrder} from '../hooks/useOrder'
 const DialogShadow = styled.div`
 
 position:fixed;
@@ -67,13 +68,23 @@ justify-content:center;`;
  background-color:${pizzaRed};
 `;
 
-export function FoodDialog({openFood,setOpenFood}){
+export function FoodDialog({openFood,setOpenFood,setOrders,orders}){
 
 function close () {
 
   setOpenFood();
 }
  console.log(openFood,'this is openefood')
+
+ const order = {
+   name :openFood.name
+ }
+
+const addToOrder = () => {
+  setOrders([...orders, order]);
+  close();
+
+ }
 
 
   return (
@@ -90,7 +101,7 @@ function close () {
            </DialogContent>
 
            <DialogFooter>
-             <ConfirmButton> Add to Order</ConfirmButton>
+             <ConfirmButton onClick={addToOrder()}> Add to Order</ConfirmButton>
            </DialogFooter>
        
        </Dialog>
