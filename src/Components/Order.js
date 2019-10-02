@@ -23,6 +23,14 @@ const OrderContent = styled(DialogContent)`
 const OrderFooter = styled.div `
 
 `
+  const OrderContainer  = styled.div `
+padding:10px 0;
+border-bottom:1px solid gray;
+`
+
+  const OrderItem = styled.div `
+  padding:10px 0px;
+  `;
 
 const Order = ({orders}) =>(
 
@@ -30,7 +38,12 @@ const Order = ({orders}) =>(
   <OrderStyled>
     { orders.length === 0 ? (<OrderContent>
       Your order is empty
-    </OrderContent>):(<OrderContent> found {orders.length}</OrderContent>)}
+    </OrderContent>):(<OrderContent>
+      <OrderContainer>Your Order:</OrderContainer>
+      {orders.map(order => (
+        <OrderContainer><OrderItem>{order.name}</OrderItem></OrderContainer>
+      ))}
+    </OrderContent>)}
     <DialogFooter>
       <ConfirmButton>Checkout</ConfirmButton>
     </DialogFooter>

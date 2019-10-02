@@ -2,7 +2,7 @@ import React from 'react';
 import styles from 'styled-components';
 import {foods} from '../FoodData/foodData.js';
 import {Food, FoodGrid,FoodLabel} from '../Styles/StylesFoodGrid';
-
+import {formatPrice} from '../FoodData/foodData';
 
 const MenuStyles = styles.div `
 
@@ -30,7 +30,8 @@ const Menu = ({setOpenFood}) => (
                 }}
               >
                 <FoodLabel>
-                {food.name}
+               <div> {food.name}</div>
+               <div>{formatPrice(food.price)}</div>
 
                 </FoodLabel>
               </Food>

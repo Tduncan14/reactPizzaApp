@@ -6,33 +6,50 @@ import chickenFries from '../img/chicken-fingers.jpeg';
 import veggiePizza from '../img/healthy-pizza.jpeg';
 import Pepper from '../img/pizza2.jpeg';
 import sandwhich from '../img/sandwich.jpeg';
+
+
+export function formatPrice(price){
+
+ return price.toLocaleString('en-US',{style:'currency',currency:'USD'});
+
+
+}
+
  const foodItems = [
     {name:'Pizza',
      img:pizza,
-     section:'Pizza'},
+     section:'Pizza',
+     price:2.99},
     {name:"Gyro",
      img:gyro,
-     section:'Sandwich'},
+     section:'Sandwich',
+     price:6.99},
     {name:'Fries',
     img:fries,
-    section:'Sides'},
+    section:'Sides',
+    price:1.55},
     {name:'Chicken Pizza',
     img:chickenPizza,
-    section:'Pizza'},
+    section:'Pizza',
+    price:3.99},
     {name:'Chicken fries',
     img:chickenFries,
-    section:'Sides'},
+    section:'Sides',
+    price:2.00},
     {name:'Veggie Pizza',
     img:veggiePizza,
-    section:'Pizza'}
+    section:'Pizza',
+    price:'3.99'}
     ,
     {name:'Sandwich',
     img:sandwhich,
-    section:'Sandwich'
+    section:'Sandwich',
+    price:4.50
    },
     {name:'Pepperoni Pizza',
     img:Pepper,
-    section:'Pizza'}
+    section:'Pizza',
+    price:3.99}
 ];
 
 export const foods = foodItems.reduce((res, food) => {
