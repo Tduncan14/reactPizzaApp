@@ -28,9 +28,9 @@ const Order = ({orders}) =>(
 
    <>
   <OrderStyled>
-    { orders.length = 0 ? (<OrderContent>
+    { orders.length === 0 ? (<OrderContent>
       Your order is empty
-    </OrderContent>):(<OrderContent>{orders.length}</OrderContent>)}
+    </OrderContent>):(<OrderContent> found {orders.length}</OrderContent>)}
     <DialogFooter>
       <ConfirmButton>Checkout</ConfirmButton>
     </DialogFooter>

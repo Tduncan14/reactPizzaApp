@@ -3,10 +3,10 @@ import {useState} from 'react';
 
 export function useOrder(){
 
-    const[Orders,setOrders] = useState([]);
+    const[orders,setOrders] = useState([]);
 
     return {
-        Orders,
+        orders,
         setOrders
     }
 }

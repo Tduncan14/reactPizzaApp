@@ -76,8 +76,12 @@ function close () {
 }
  console.log(openFood,'this is openefood')
 
+ if(!openFood){
+   return null
+ }
+
  const order = {
-   name :openFood.name
+   name:openFood.name
  }
 
 const addToOrder = () => {
@@ -101,7 +105,7 @@ const addToOrder = () => {
            </DialogContent>
 
            <DialogFooter>
-             <ConfirmButton onClick={addToOrder()}> Add to Order</ConfirmButton>
+             <ConfirmButton onClick={addToOrder}> Add to Order</ConfirmButton>
            </DialogFooter>
        
        </Dialog>
