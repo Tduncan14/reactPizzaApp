@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import {FoodLabel} from '../Styles/StylesFoodGrid'
 import {pizzaRed} from '../Styles/colors';
 import {Title} from '../Styles/title';
-import {useOrder} from '../hooks/useOrder'
+import {useOrder} from '../hooks/useOrder';
+import {formatPrice} from '../FoodData/foodData'
+import { format } from 'url';
 const DialogShadow = styled.div`
 
 position:fixed;
@@ -81,7 +83,7 @@ function close () {
  }
 
  const order = {
-   name:openFood.name
+  ...orders
  }
 
 const addToOrder = () => {
@@ -105,7 +107,7 @@ const addToOrder = () => {
            </DialogContent>
 
            <DialogFooter>
-             <ConfirmButton onClick={addToOrder}> Add to Order</ConfirmButton>
+             <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(openFood.price)}</ConfirmButton>
            </DialogFooter>
        
        </Dialog>
