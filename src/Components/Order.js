@@ -47,10 +47,14 @@ const Order = ({orders}) =>{
     { orders.length == 0 ? (<OrderContent>
       Your order is empty
     </OrderContent>):(<OrderContent>
+      {
+        " "
+      }
       <OrderContainer>Your Order:  {orders.length}</OrderContainer>
       {orders.map(order => (
         <OrderContainer><OrderItem>
         <div> {order.name}</div>
+        <div>{formatPrice(order.price)}</div>
 </OrderItem></OrderContainer>
       ))}
     </OrderContent>)}
