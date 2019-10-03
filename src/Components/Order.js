@@ -29,11 +29,14 @@ const OrderFooter = styled.div `
   const OrderContainer  = styled.div `
 padding:10px 0;
 border-bottom:1px solid gray;
-color:blue;
+
 `
 
   const OrderItem = styled.div `
   padding:10px 0px;
+  display:grid;
+  grid-template-columns:20px 150px 20px 60px;
+  justify-content:space-between;
   `;
 
 const Order = ({orders}) =>{
@@ -53,7 +56,9 @@ const Order = ({orders}) =>{
       <OrderContainer>Your Order:  {orders.length}</OrderContainer>
       {orders.map(order => (
         <OrderContainer><OrderItem>
+        <div>1</div>
         <div> {order.name}</div>
+        <div></div>
         <div>{formatPrice(order.price)}</div>
 </OrderItem></OrderContainer>
       ))}
