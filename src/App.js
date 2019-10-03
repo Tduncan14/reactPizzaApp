@@ -21,7 +21,7 @@ console.log(openFood);
 <Navbar />
 <FoodDialog {...openFood} {...orders}/>
 <Banner/>
-<Order {...orders}/>
+<Order {...orders} {...openFood}/>
 <Menu {...openFood}/>
 <div>
 

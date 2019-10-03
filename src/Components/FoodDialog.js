@@ -83,7 +83,7 @@ function close () {
  }
 
  const order = {
-  ...orders
+  ...openFood
  }
 
 const addToOrder = () => {

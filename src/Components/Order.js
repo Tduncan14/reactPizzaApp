@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {DialogContent,DialogFooter,ConfirmButton} from "../Components/FoodDialog";
+import { useOpenFood } from '../hooks/useOpenFood';
+import {formatPrice} from '../FoodData/foodData';
+
 
  const OrderStyled = styled.div `
  position:fixed;
@@ -26,22 +29,29 @@ const OrderFooter = styled.div `
   const OrderContainer  = styled.div `
 padding:10px 0;
 border-bottom:1px solid gray;
+color:blue;
 `
 
   const OrderItem = styled.div `
   padding:10px 0px;
   `;
 
-const Order = ({orders}) =>(
+const Order = ({orders}) =>{
 
-   <>
+
+  
+
+  return (
+  <>
   <OrderStyled>
-    { orders.length === 0 ? (<OrderContent>
+    { orders.length == 0 ? (<OrderContent>
       Your order is empty
     </OrderContent>):(<OrderContent>
-      <OrderContainer>Your Order:</OrderContainer>
+      <OrderContainer>Your Order:  {orders.length}</OrderContainer>
       {orders.map(order => (
-        <OrderContainer><OrderItem>{order.name}</OrderItem></OrderContainer>
+        <OrderContainer><OrderItem>
+        <div> {order.name}</div>
+</OrderItem></OrderContainer>
       ))}
     </OrderContent>)}
     <DialogFooter>
@@ -51,9 +61,9 @@ const Order = ({orders}) =>(
   
   </OrderStyled>
   </>
-
-
 )
+
+      }
 
 
 export default Order;
