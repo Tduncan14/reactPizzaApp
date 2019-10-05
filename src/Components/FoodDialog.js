@@ -6,6 +6,9 @@ import {Title} from '../Styles/title';
 import {useOrder} from '../hooks/useOrder';
 import {formatPrice} from '../FoodData/foodData'
 import { format } from 'url';
+import {QuanityInput} from './QuanityInput.js';
+import{useQuanity} from '../hooks/useQuanity';
+
 const DialogShadow = styled.div`
 
 position:fixed;
@@ -48,7 +51,8 @@ padding:5px 40px;
 `
 export const DialogContent = styled.div `
 overflow:auto;
-min-height:100px;`
+min-height:100px;
+padding: 0 40px;`
 
 
 export const DialogFooter = styled.div `
@@ -70,7 +74,9 @@ justify-content:center;`;
  background-color:${pizzaRed};
 `;
 
-export function FoodDialog({openFood,setOpenFood,setOrders,orders}){
+export function FoodDialogContainer({openFood,setOpenFood,setOrders,orders}){
+
+  const quantity = useQuanity(openFood && openFood.quantity)
 
 function close () {
 
@@ -103,6 +109,7 @@ const addToOrder = () => {
            </DialogBanner>
 
            <DialogContent>
+             <QuanityInput quantity ={quantity}/>
 
            </DialogContent>
 
@@ -115,5 +122,19 @@ const addToOrder = () => {
     ):(null)
   
   )
+
+}
+
+
+export function FoodDialog(props){
+
+  if(!props.openFood) return null;
+  
+return <FoodDialogContainer {...props}>
+
+  </FoodDialogContainer>
+ 
+
+
 
 }
