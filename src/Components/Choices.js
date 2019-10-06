@@ -1,16 +1,29 @@
 import React from 'react';
 import { useOpenFood } from '../hooks/useOpenFood';
+import styled from 'styled-components';
+
+const cursorPointer = `cursor:pointer`;
 
 
-export function choices({}){
+const RadioInput = styled.input`
+  ${cursorPointer}
+
+
+`;
+
+const Label = styled.label`
+  ${cursorPointer}
+`;
+
+export function Choices({openFood,choiceRadio}){
 
     return(
         <>
         <h3>Choose one</h3>
-        {useOpenFood.choices.map(
+        {openFood.choices.map(
             choice => (
                 <>
-                 <input
+                 <RadioInput
                   type="radio"
                   id={choice}
                   name="choice"
@@ -19,7 +32,7 @@ export function choices({}){
                   onChange={choiceRadio.onChange}
                   />
 
-                  <label for={choice}>{choice}</label>
+                  <Label for={choice}>{choice}</Label>
                 </>
                 
             )

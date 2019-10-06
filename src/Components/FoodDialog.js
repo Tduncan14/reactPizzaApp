@@ -10,6 +10,10 @@ import {QuanityInput} from './QuanityInput.js';
 import{useQuanity} from '../hooks/useQuanity';
 import {Toppings} from './Toppings';
 import{useToppings} from '../hooks/useToppings';
+import{useChoice} from '../hooks/useChoice';
+import{Choices} from './Choices';
+
+
 const Dialog = styled.div`
   width: 500px;
   background-color: white;
@@ -96,7 +100,7 @@ export function FoodDialogContainer({openFood,setOpenFood,setOrders,orders}){
 
   const quantity = useQuanity(openFood && openFood.quantity);
   const toppings = useToppings(openFood.toppings);
-
+  const choiceRadio = useChoice(openFood.choice);
  function hasToppings (food){
 
    return food.section === 'Pizza';
@@ -118,7 +122,8 @@ function close () {
  const order = {
   ...openFood,
   quantity:quantity.value,
-  toppings:toppings.toppings
+  toppings:toppings.toppings,
+  choice:choiceRadio.value
   
  }
 
@@ -148,10 +153,11 @@ const addToOrder = () => {
            <Toppings  {...toppings}/>
            </>
            }
+           {openFood.choices &&<Choices openFood={openFood} choiceRadio = {choiceRadio}/>}
              </DialogContent>
 
            <DialogFooter>
-             <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(getPrice(order))}</ConfirmButton>
+             <ConfirmButton  disabled={openFood.choices && !choiceRadio.value}    onClick={addToOrder}> Add to Order:{formatPrice(getPrice(order))}</ConfirmButton>
            </DialogFooter>
        
        </Dialog>
