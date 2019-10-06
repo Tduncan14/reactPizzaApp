@@ -42,7 +42,15 @@ border-bottom:1px solid gray;
 const Order = ({orders}) =>{
 
 
+  const subTotal = orders.reduce((total,order) =>{
+     return total +getPrice(order);
+
+  },0)
   
+  const tax = subTotal * 0.07;
+
+
+  const total = tax + subTotal;
 
   return (
   <>
@@ -53,15 +61,35 @@ const Order = ({orders}) =>{
       {
         " "
       }
-      <OrderContainer>Your Order:  {orders.length}</OrderContainer>
+      <OrderContainer>Your Order:</OrderContainer>
       {orders.map(order => (
         <OrderContainer><OrderItem>
-        <div>1</div>
+        <div>{order.quantity}</div>
         <div> {order.name}</div>
         <div></div>
         <div>{formatPrice(getPrice(order))}</div>
-</OrderItem></OrderContainer>
+</OrderItem>
+</OrderContainer>
       ))}
+      <OrderContainer>
+        <OrderItem>
+        <div/>
+        <div>Sub-total:</div>
+        <div>{formatPrice(subTotal)}</div>
+        </OrderItem>
+  
+        <OrderItem>
+        <div/>
+        <div>State Taxes:</div>
+        <div>{formatPrice(tax)}</div>
+        </OrderItem>
+
+        <OrderItem>
+        <div/>
+        <div>Total price:</div>
+        <div>{formatPrice(total)}</div>
+        </OrderItem>
+      </OrderContainer>
     </OrderContent>)}
     <DialogFooter>
       <ConfirmButton>Checkout</ConfirmButton>
@@ -72,7 +100,7 @@ const Order = ({orders}) =>{
   </>
 )
 
-      }
+    }
 
 
 export default Order;
