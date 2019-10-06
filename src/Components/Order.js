@@ -39,6 +39,11 @@ border-bottom:1px solid gray;
   justify-content:space-between;
   `;
 
+
+const DetailItem =styled.div `
+color:gray;
+font-size:10px;`
+
 const Order = ({orders}) =>{
 
 
@@ -47,6 +52,7 @@ const Order = ({orders}) =>{
 
   },0)
   
+
   const tax = subTotal * 0.07;
 
 
@@ -68,6 +74,12 @@ const Order = ({orders}) =>{
         <div> {order.name}</div>
         <div></div>
         <div>{formatPrice(getPrice(order))}</div>
+        <DetailItem>
+          {order.toppings
+           .filter(t => t.checked)
+           .map(topping => topping.name)
+           .join(", ")}
+        </DetailItem>
 </OrderItem>
 </OrderContainer>
       ))}

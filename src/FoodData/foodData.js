@@ -49,7 +49,13 @@ export function formatPrice(price){
     {name:'Pepperoni Pizza',
     img:Pepper,
     section:'Pizza',
-    price:3.99}
+    price:3.99},
+    {
+      price:1,
+      name:'Soda',
+      section:'Drinks',
+      choices:['Sprite','Root Beer','Fanta']
+    }
 ];
 
 export const foods = foodItems.reduce((res, food) => {

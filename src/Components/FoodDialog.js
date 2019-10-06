@@ -9,81 +9,93 @@ import { format } from 'url';
 import {QuanityInput} from './QuanityInput.js';
 import{useQuanity} from '../hooks/useQuanity';
 import {Toppings} from './Toppings';
-const DialogShadow = styled.div`
-
-position:fixed;
-height:100%;
-width:100%;
-top:0px;
-background-color:black;
-opacity:0.7;
-z-index:4;
-`
+import{useToppings} from '../hooks/useToppings';
 const Dialog = styled.div`
-width:425px;
-background-color:white;
-margin-top:10px;
-position:fixed;
-top:75px;
-height:500px;
-z-index:5;
-max-height:calc(100% - 100px);
-left: calc(50% - 250px);
-display:flex;
-flex-direction:column`;
+  width: 500px;
+  background-color: white;
+  position: fixed;
+  top: 75px;
+  z-index: 5;
+  max-height: calc(100% - 100px);
+  left: calc(50% - 250px);
+  display: flex;
+  flex-direction: column;
+`;
 
+export const DialogContent = styled.div`
+  overflow: auto;
+  min-height: 100px;
+  padding: 20px 40px;
+  padding-bottom: 80px;
+`;
 
+export const DialogFooter = styled.div`
+  box-shadow: 0px -2px 10px 0px grey;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+`;
 
+export const ConfirmButton = styled(Title)`
+  margin: 10px;
+  color: white;
+  height: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  background-color: ${pizzaRed};
+  ${({ disabled }) =>
+    disabled &&
+    `
+    opactity: .5; 
+    background-color: grey; 
+    pointer-events: none; 
+  `}
+`;
+
+const DialogShadow = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  background-color: black;
+  opacity: 0.7;
+  z-index: 4;
+`;
 
 const DialogBanner = styled.div`
-min-height:200px;
-margin-bottom:20px;
-background-image:${({img}) => `url(${img});`}
-background-size:cover;
-background-position:center;
+  min-height: 200px;
+  margin-bottom: 20px;
+  ${({ img }) => (img ?
+    `background-image: url(${img});` 
+    : `min-height: 75px;`)}
+  background-position: center;
+  background-size: cover;
 `;
 
-const DialogBannerName =styled(FoodLabel) `
-font-family ='Righteous', cursive;
-top:100px;
-font-size:30px;
-padding:5px 40px;
-`
-export const DialogContent = styled.div `
-overflow:auto;
-height:100px;
-padding: 0 40px;`
-
-
-export const DialogFooter = styled.div `
-box-shadow:  0px  7px 4px -2px gray;
-height:60px;
-display:flex;
-justify-content:center;`;
-
-
- export const ConfirmButton = styled(Title)`
- margin:10px;
- color:white;
- height:20px;
- border-radius:5px;
- padding:10px;
- text-align:center;
- width:200px;
- cursor:pointer;
- background-color:${pizzaRed};
+const DialogBannerName = styled(FoodLabel)`
+  font-size: 30px;
+  padding: 5px 40px;
+  top: ${({ img }) => (img ? `100px` : `20px`)};
 `;
+
+const pricePerTopping = 0.5;
 
 export function getPrice(order){
 
-  return order.quantity * order.price;
+ return( order.quantity *
+    (order.price +
+      order.toppings.filter(t => t.checked).length * pricePerTopping)
+ )
 
 }
 
 export function FoodDialogContainer({openFood,setOpenFood,setOrders,orders}){
 
-  const quantity = useQuanity(openFood && openFood.quantity)
-
+  const quantity = useQuanity(openFood && openFood.quantity);
+  const toppings = useToppings(openFood.toppings);
 
  function hasToppings (food){
 
@@ -105,7 +117,8 @@ function close () {
 
  const order = {
   ...openFood,
-  quantity:quantity.value
+  quantity:quantity.value,
+  toppings:toppings.toppings
   
  }
 
@@ -127,13 +140,16 @@ const addToOrder = () => {
 
            <DialogContent>
              <QuanityInput quantity ={quantity}/>
-
-           </DialogContent>
+         
+           
+           
            {hasToppings(openFood) &&<>
-           <h3>Do you want Toppings?</h3>
-           <Toppings/>
+           <h3 >Do you want Toppings?</h3>
+           <Toppings  {...toppings}/>
            </>
            }
+             </DialogContent>
+
            <DialogFooter>
              <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(getPrice(order))}</ConfirmButton>
            </DialogFooter>

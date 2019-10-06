@@ -2,18 +2,20 @@ import {useState} from 'react';
 
 export function useToppings(defaultTopping){
 
-const[toppings,setToppings] = useState[defaultTopping || getDefaultToppings()];
+const[toppings,setToppings] =
+ useState(defaultTopping || getDefaultToppings()
+ );
 
 
 function checkToppings(index){
    const newToppings = [...toppings];
-   newToppings[index].checked = !newToppings.checked
+   newToppings[index].checked = !newToppings[index].checked
    setToppings(newToppings);
 }
 
  return{
      checkToppings,
-     setToppings
+     toppings
  }
 
 }
@@ -33,7 +35,7 @@ const toppingsList = [
 
 function getDefaultToppings(){
 
-    return toppingsList.map((topping)=>(
+    return toppingsList.map((topping,i)=>(
 
         {name:topping,
           checked:false}
