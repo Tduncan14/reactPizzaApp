@@ -15,7 +15,8 @@ export function choices({}){
                   id={choice}
                   name="choice"
                   value={choice}
-                  checked={choiceRadio.onChange}
+                  checked={choiceRadio.value === choice}
+                  onChange={choiceRadio.onChange}
                   />
 
                   <label for={choice}>{choice}</label>
