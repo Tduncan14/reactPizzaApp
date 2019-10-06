@@ -8,7 +8,7 @@ import {formatPrice} from '../FoodData/foodData'
 import { format } from 'url';
 import {QuanityInput} from './QuanityInput.js';
 import{useQuanity} from '../hooks/useQuanity';
-
+import {Toppings} from './Toppings';
 const DialogShadow = styled.div`
 
 position:fixed;
@@ -51,7 +51,7 @@ padding:5px 40px;
 `
 export const DialogContent = styled.div `
 overflow:auto;
-min-height:100px;
+height:100px;
 padding: 0 40px;`
 
 
@@ -85,7 +85,12 @@ export function FoodDialogContainer({openFood,setOpenFood,setOrders,orders}){
   const quantity = useQuanity(openFood && openFood.quantity)
 
 
+ function hasToppings (food){
 
+   return food.section === 'Pizza';
+
+
+ }
 
 
 function close () {
@@ -124,7 +129,11 @@ const addToOrder = () => {
              <QuanityInput quantity ={quantity}/>
 
            </DialogContent>
-
+           {hasToppings(openFood) &&<>
+           <h3>Do you want Toppings?</h3>
+           <Toppings/>
+           </>
+           }
            <DialogFooter>
              <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(getPrice(order))}</ConfirmButton>
            </DialogFooter>
