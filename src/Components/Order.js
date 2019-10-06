@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {DialogContent,DialogFooter,ConfirmButton} from "../Components/FoodDialog";
 import { useOpenFood } from '../hooks/useOpenFood';
 import {formatPrice} from '../FoodData/foodData';
-
+import {getPrice} from '../Components/FoodDialog';
 
  const OrderStyled = styled.div `
  position:fixed;
@@ -59,7 +59,7 @@ const Order = ({orders}) =>{
         <div>1</div>
         <div> {order.name}</div>
         <div></div>
-        <div>{formatPrice(order.price)}</div>
+        <div>{formatPrice(getPrice(order))}</div>
 </OrderItem></OrderContainer>
       ))}
     </OrderContent>)}

@@ -13,7 +13,7 @@ const [ value, setValue] = useState(defaultQuantity || 1)
       return
      
     }
-    setValue(e.target.value);
+    setValue(+e.target.value);
   }
 
   return {

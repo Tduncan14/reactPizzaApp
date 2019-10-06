@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Title} from '../Styles/title'
+import {Title} from '../Styles/title';
+import {pizzaRed} from '../Styles/colors';
+
 
 const  QuantityInputStyled = styled.input`
  font-sizenputStyled:18px;
@@ -11,16 +13,40 @@ const  QuantityInputStyled = styled.input`
 
 `;
 
-const incrementContainer = styled(Title)`
+const IncrementContainer = styled(Title)`
 display:flex;
 height:24px;`;
+
+
+const IncrementButton = styled.div `
+width:23px;
+color:${pizzaRed};
+font-size:20px;
+text-align:center;
+cursor:pointer;
+padding:-12px;
+line-height:23px;
+margin:0px 10px;
+border:1px solid ${pizzaRed};
+
+${({disabled}) => disabled &&
+ `opacity:0.5;
+   pointer-events:none;`
+  }
+    &:hover {
+      background-color: #ffe3e3;
+    }
+`
 
 export function QuanityInput({quantity}){
 
 
 
-    return (<incrementContainer>
+    return (<IncrementContainer>
       <div>quantity</div>
+      <IncrementButton onClick={()=>{quantity.setValue(quantity.value - 1)}}
+       disabled={quantity.value === 1}> - </IncrementButton>
       <QuantityInputStyled {...quantity}/>
-    </incrementContainer>)
+      <IncrementButton onClick={() =>{quantity.setValue(quantity.value + 1)}}> + </IncrementButton>
+    </IncrementContainer>)
 }

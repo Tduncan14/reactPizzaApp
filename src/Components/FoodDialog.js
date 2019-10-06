@@ -74,9 +74,19 @@ justify-content:center;`;
  background-color:${pizzaRed};
 `;
 
+export function getPrice(order){
+
+  return order.quantity * order.price;
+
+}
+
 export function FoodDialogContainer({openFood,setOpenFood,setOrders,orders}){
 
   const quantity = useQuanity(openFood && openFood.quantity)
+
+
+
+
 
 function close () {
 
@@ -89,7 +99,9 @@ function close () {
  }
 
  const order = {
-  ...openFood
+  ...openFood,
+  quantity:quantity.value
+  
  }
 
 const addToOrder = () => {
@@ -114,7 +126,7 @@ const addToOrder = () => {
            </DialogContent>
 
            <DialogFooter>
-             <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(openFood.price)}</ConfirmButton>
+             <ConfirmButton onClick={addToOrder}> Add to Order:{formatPrice(getPrice(order))}</ConfirmButton>
            </DialogFooter>
        
        </Dialog>
