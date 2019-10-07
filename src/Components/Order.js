@@ -23,14 +23,28 @@ const OrderContent = styled(DialogContent)`
  height:100%;
 `
 
+const cursorPointer ={
+  "cursor":"pointer"
+};
+
 const OrderFooter = styled.div `
 
 `
-  const OrderContainer  = styled.div `
-padding:10px 0;
-border-bottom:1px solid gray;
-
-`
+const OrderContainer = styled.div`
+  padding: 10px 0px;
+  border-bottom: 1px solid grey;
+  ${({ editable }) =>
+    editable
+      ? `
+    &:hover {
+      cursor: pointer;
+      background-color: #e7e7e7;
+    }
+  `
+      : `
+    pointer-events: none; 
+  `}
+`;
 
   const OrderItem = styled.div `
   padding:10px 0px;
@@ -44,7 +58,7 @@ const DetailItem =styled.div `
 color:gray;
 font-size:10px;`
 
-const Order = ({orders}) =>{
+const Order = ({orders,setOrders,setOpenFood}) =>{
 
 
   const subTotal = orders.reduce((total,order) =>{
@@ -58,6 +72,16 @@ const Order = ({orders}) =>{
 
   const total = tax + subTotal;
 
+
+  const deleteItem = index =>{
+
+     const newOrders = [...orders];
+
+     newOrders.splice(index,1)
+     setOrders(newOrders);
+
+  }
+
   return (
   <>
   <OrderStyled>
@@ -68,11 +92,17 @@ const Order = ({orders}) =>{
         " "
       }
       <OrderContainer>Your Order:</OrderContainer>
-      {orders.map(order => (
-        <OrderContainer><OrderItem>
+      {orders.map((order,i) => (
+        <OrderContainer
+         editable><OrderItem
+        onClick={() => {
+          setOpenFood({...order,i})
+        }}>
         <div>{order.quantity}</div>
         <div> {order.name}</div>
-        <div></div>
+        <div style={cursorPointer} onClick={(e)=>{
+          e.stopPropagation();
+          deleteItem(i)}}>X</div>
         <div>{formatPrice(getPrice(order))}</div>
         <DetailItem>
           {order.toppings
