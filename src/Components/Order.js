@@ -102,7 +102,7 @@ const Order = ({orders,setOrders,setOpenFood}) =>{
         <div> {order.name}</div>
         <div style={cursorPointer} onClick={(e)=>{
           e.stopPropagation();
-          deleteItem(i)}}>X</div>
+          deleteItem(i)}}>   🗑</div>
         <div>{formatPrice(getPrice(order))}</div>
         <DetailItem>
           {order.toppings
